@@ -2,7 +2,7 @@
 session_start();
 require_once 'config/database.php';
 
-// Proteksi 1: Jika sudah login, lempar langsung ke halaman utama
+// Proteksi 1: jika sudah login, lempar langsung ke halaman utama
 if (isset($_SESSION['id_user'])) {
     header('Location: index.php');
     exit;
@@ -13,7 +13,7 @@ $error = '';
 // Proses saat tombol submit form login ditekan
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = trim($_POST['username']);
-    $password = md5($_POST['password']); // Hashing password dengan algoritma MD5
+    $password = md5($_POST['password']); // hashing password dengan algoritma MD5
 
     // Gunakan Prepared Statement untuk mencegah SQL Injection
     $stmt = $koneksi->prepare('SELECT id_user, nama, password, role FROM user WHERE username = ?');
